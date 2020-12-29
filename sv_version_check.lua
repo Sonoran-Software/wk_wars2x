@@ -58,7 +58,7 @@ PerformHttpRequest( "https://wolfknight98.github.io/wk_wars2x_web/version.txt", 
 	print( label )
 
 	-- Get the current resource version 
-	local curVer = GetCurrentVersion()
+	--[[local curVer = GetCurrentVersion()
 	
 	if ( text ~= nil ) then 
 		-- Print out the current and latest version 
@@ -74,5 +74,5 @@ PerformHttpRequest( "https://wolfknight98.github.io/wk_wars2x_web/version.txt", 
 	else 
 		-- In case the version can not be requested, print out an error message
 		print( "  ||    ^1There was an error getting the latest version information, if the issue persists contact WolfKnight#8586 on Discord.\n^0  ||\n  \\\\\n" )
-	end 
+	end --]]
 end )

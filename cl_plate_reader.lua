@@ -243,13 +243,28 @@ function READER:Main()
 						SendNUIMessage( { _type = "changePlate", cam = cam, plate = plate, index = index } )
 
 						-- Trigger the event so developers can hook into the scanner every time a plate is scanned
-						TriggerServerEvent( "wk:onPlateScanned", cam, plate, index )
+						if (IsPlayerInAnySeat(veh) or IsVehiclePreviouslyOwnedByPlayer(veh)) and GetVehicleClass(veh) ~= 18 then
+							TriggerServerEvent( "wk:onPlateScanned", cam, plate, index )
+						end
 					end 
 				end 
 			end 
 		end 
 	end 
 end 
+
+function IsPlayerInAnySeat(veh)
+	local hasPlayer = false
+	for i = -1, GetVehicleMaxNumberOfPassengers(veh)+1, 1 do
+		local ped = GetPedInVehicleSeat(veh, i)
+		if ped then
+			if IsPedAPlayer(ped) then
+				hasPlayer = true
+			end
+		end
+	end
+	return hasPlayer
+end
 
 -- Main thread
 Citizen.CreateThread( function()
